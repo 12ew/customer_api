@@ -1,0 +1,22 @@
+{
+  "name": "restify_customer_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^5.5.2",
+    "mongoose-timestamp": "^0.6.0",
+    "restify-errors": "^7.0.0",
+    "restify": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
