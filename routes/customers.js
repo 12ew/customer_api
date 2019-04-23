@@ -33,7 +33,22 @@ module.exports = server => {
 			res.send(201);
 			next();
 		} catch (err) {
-			return next(new errors.InternalError(err.message));
+			return next(new errors.ResourceNotFoundError(err.message));
+		}
+	});
+
+	// GET Single Customer
+	server.get('/customers/:id', async (req, res, next) => {
+		try {
+			const customer = await Customer.findById(req.params.id);
+			res.send(customer);
+			next();
+		} catch (err) {
+			return next(
+				new errors.ResourceNotFoundError(
+					`There is no customer with the id of ${req.params.id}`
+				)
+			);
 		}
 	});
 };
