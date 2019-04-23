@@ -12,6 +12,21 @@ module.exports = server => {
 			return next(new errors.InvalidContentError(err));
 		}
 	});
+	
+	// GET Single Customer
+	server.get('/customers/:id', async (req, res, next) => {
+		try {
+			const customer = await Customer.findById(req.params.id);
+			res.send(customer);
+			next();
+		} catch (err) {
+			return next(
+				new errors.ResourceNotFoundError(
+					`There is no customer with the id of ${req.params.id}`
+				)
+			);
+		}
+	});
 
 	// POST / Add Customer
 	server.post('/customers', async (req, res, next) => {
@@ -37,11 +52,17 @@ module.exports = server => {
 		}
 	});
 
-	// GET Single Customer
-	server.get('/customers/:id', async (req, res, next) => {
+
+	// Update Customer
+	server.put('/customers/:id', async (req, res, next) => {
+		//Check for JSON
+		if (!req.is('application/json')) {
+			return next(new error.InvalidContentError("Expects 'application/json'"));
+		}
+
 		try {
-			const customer = await Customer.findById(req.params.id);
-			res.send(customer);
+			const customer = await Customer.findOneAndUpdate({ _id: req.params.id }, req.body);
+			res.send(200);
 			next();
 		} catch (err) {
 			return next(
@@ -51,4 +72,5 @@ module.exports = server => {
 			);
 		}
 	});
+
 };
