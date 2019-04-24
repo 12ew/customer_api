@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.2",
     "mongoose-timestamp": "^0.6.0",
+    "restify": "^8.3.0",
     "restify-errors": "^7.0.0",
-    "restify": "^8.3.0"
+    "restify-jwt-community": "^1.0.11"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"
